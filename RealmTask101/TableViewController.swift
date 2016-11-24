@@ -10,30 +10,41 @@
 import UIKit
 import Realm
 
+
 class TableViewController: UITableViewController {
+    
+    @IBAction func plusButton(_ sender: Any) {
+        
+    }
+    
+    var tasks: RLMResults<RLMObject> {
+        get {
+            return Task.allObjects()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let taskA = TaskList()
-        taskA.name = "Wishlist"
-        
-        let item1 = Task()
-        item1.name = "item1"
-        item1.notes = "This is item number 1"
-        
-        let item2 = Task(value: ["name": "item2", "notes": "This is item number 2"])
-        
-        taskA.tasks.append(item1)
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.reloadData()
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return Int(tasks.count)
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+   
+    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
+        
+        let index = indexPath.row
+        let taskItem = tasks.object(at: UInt(index)) as! Task
+        cell.textLabel?.text = taskItem.name
+        
         return cell
     }
 }

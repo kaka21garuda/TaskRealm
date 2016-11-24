@@ -7,18 +7,9 @@
 //
 
 import Foundation
-import RealmSwift
+import Realm
 
-class Task: Object {
-    
+class Task: RLMObject {
     dynamic var name = ""
-    dynamic var createdAt = NSDate()
-    dynamic var notes = ""
-    dynamic var isCompleted = false
-    
-// Specify properties to ignore (Realm won't persist these)
-    
-//  override static func ignoredProperties() -> [String] {
-//    return []
-//  }
+    dynamic var finished = false
 }
