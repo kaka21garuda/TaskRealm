@@ -9,12 +9,35 @@
 
 import UIKit
 import Realm
+import RealmSwift
 
 
 class TableViewController: UITableViewController {
     
+   
     @IBAction func plusButton(_ sender: Any) {
+        let alertController = UIAlertController(title: "Notes", message: "Please type in your notes", preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Enter your stuff"
+        }
         
+        alertController.addAction(UIAlertAction(title: "Done", style: .default, handler: { (action) in
+            let text = alertController.textFields?.first?.text
+            let realm = RLMRealm.default()
+            
+            if (text?.utf16.count)! > 0 {
+                let newItem = Task()
+                newItem.name = text!
+                
+                realm.beginWriteTransaction()
+                realm.add(newItem)
+                print(newItem)
+                //self.tableView.reloadData()
+                self.dismiss(animated: true, completion: nil)
+            }
+        }))
+        self.present(alertController, animated: true, completion: nil)
+
     }
     
     var tasks: RLMResults<RLMObject> {

@@ -9,6 +9,7 @@
 import Foundation
 import Realm
 
+
 class Task: RLMObject {
     dynamic var name = ""
     dynamic var finished = false

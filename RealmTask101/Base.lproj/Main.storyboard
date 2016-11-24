@@ -41,13 +41,17 @@
                             <outlet property="delegate" destination="BcW-te-HFf" id="Fuo-HZ-s7i"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="add" id="iZT-bs-X9b"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="OH6-vU-Rzo">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="uD5-jW-AJ9">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="UAk-tU-8yd">
                             <connections>
-                                <action selector="plusButton:" destination="BcW-te-HFf" id="Aqo-DS-Ty7"/>
+                                <action selector="plusButton:" destination="BcW-te-HFf" id="YaH-AP-YNd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="czq-B8-qNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
