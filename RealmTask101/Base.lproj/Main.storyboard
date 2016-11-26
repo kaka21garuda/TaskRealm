@@ -34,6 +34,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleLabel" destination="lhx-RH-j2I" id="v0q-5u-h1D"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -45,11 +48,7 @@
                         <barButtonItem style="plain" systemItem="add" id="iZT-bs-X9b"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="OH6-vU-Rzo">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="UAk-tU-8yd">
-                            <connections>
-                                <action selector="plusButton:" destination="BcW-te-HFf" id="YaH-AP-YNd"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="UAk-tU-8yd"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
