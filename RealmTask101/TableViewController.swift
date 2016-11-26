@@ -13,53 +13,47 @@ import RealmSwift
 
 class TableViewController: UITableViewController {
     
+    let realm = try! Realm()
+    
+    
+    @IBAction func plusButton(_ sender: Any) {
+        let alertController = UIAlertController(title: "Notes", message: "Enter your message here", preferredStyle: .alert)
+        alertController.addTextField { (nameTextField) in
+            nameTextField.placeholder = "Enter your title"
+        }
+        alertController.addTextField { (notesTextField) in
+            notesTextField.placeholder = "Enter your notes"
+        }
+        alertController.addAction(UIAlertAction(title: "write", style: .default, handler: { (action) in
+            let nameText = alertController.textFields?.first
+            let notesText = alertController.textFields?.last
+            
+            var newObject = Task()
+            newObject.name = (nameText?.text)!
+            newObject.notes = (notesText?.text)!
+            
+            try! self.realm.write({
+                self.realm.add(newObject)
+            })
+            self.dismiss(animated: true, completion: nil)
+            self.tableView.reloadData()
+        }))
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        addObjectToRealm()
-        queryAllMessages()
-    }
-    
-    func addObjectToRealm() {
-        let firstTask = Task()
-        firstTask.name = "Hello"
-        firstTask.notes = "World"
-        
-        let secondTask = Task()
-        secondTask.name = "Good"
-        secondTask.notes = "Morning"
-        
-        let thirdTask = Task()
-        thirdTask.name = "Hey,"
-        thirdTask.notes = "whatsup!"
-        
-        let realm = try! Realm()
-        
-        try! realm.write({ 
-            realm.add(firstTask)
-            realm.add(secondTask)
-            realm.add(thirdTask)
-            print("Added \(firstTask.name) to realm database.")
-        })
-    }
-    
-    func queryAllMessages() {
-        let realm = try! Realm()
-        
-        let allMessages = realm.objects(Task)
-        for message in allMessages {
-            print("message: \(message.name) \(message.notes)")
-        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        let allMessages = realm.objects(Task)
+        return allMessages.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell!
-        cell?.titleLabel.text = "TitleLabel"
+        let allMessages = realm.objects(Task)
+        cell?.titleLabel.text = allMessages[indexPath.row].name
         return cell!
     }
 }

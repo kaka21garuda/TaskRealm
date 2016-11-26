@@ -48,7 +48,11 @@
                         <barButtonItem style="plain" systemItem="add" id="iZT-bs-X9b"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="OH6-vU-Rzo">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="UAk-tU-8yd"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="UAk-tU-8yd">
+                            <connections>
+                                <action selector="plusButton:" destination="BcW-te-HFf" id="x1S-NJ-ril"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
